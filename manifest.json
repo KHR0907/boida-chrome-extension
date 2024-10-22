@@ -11,6 +11,13 @@
     "activeTab",
     "scripting"
   ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/contentScript.js"],
+      "css": ["css/style.css"]
+    }
+  ],
   "action": {
     "default_title": "Translate MP4 to sign language",
     "default_popup": "html/popup.html",

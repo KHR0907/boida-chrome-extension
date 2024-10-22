@@ -4,29 +4,28 @@
  * ---------------------------------------------------------------------------------
  **/
 
-// changeColor ID element 를 취득
-let changeColor = document.getElementById("changeColor");
+document.getElementById('toggle-pip').addEventListener('click', async () => {
+    let [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true }); // 활성화된 탭을 찾아냄
 
-// 배경색 버튼을 클릭하였을 경우 이벤트 등록
-changeColor.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (activeTab) {
+        chrome.tabs.sendMessage(activeTab.id, { action: "toggle_pip" }); // 메시지를 탭으로 보냄
 
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: engineApiRequest,
-    });
+        chrome.scripting.executeScript({
+            target: { tabId: activeTab.id },
+            function: engineApiRequest, //  engineApiRequest 함수 실행
+        });
+    }
 });
 
-function engineApiRequest () {
+function engineApiRequest() {
     //URL
     const engineUrl = "https://boida.bubblecell.win/api/boida";
     const currentUrl = window.location.href;
 
     let targeturl = engineUrl + "?vidURL=" + currentUrl; // 요청을 보낼 엔진 URL
     console.log("start");
-
     fetch(targeturl,
-        {method: 'POST', mode:'no-cors'})
+        {method: 'POST', mode: 'no-cors'})
         // 요청할 URL
         .then(response => {
             if (!response.ok) {  // 응답이 성공적인지 확인
@@ -41,4 +40,7 @@ function engineApiRequest () {
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
         });
+    console.log("end");
 }
+
+
