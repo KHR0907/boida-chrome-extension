@@ -6,6 +6,7 @@
 **/
 
 chrome.runtime.onInstalled.addListener(() => {
+  let color=11111;
   chrome.storage.sync.set({ color });
   console.log('Boida 앱을 실행합니다.');
 });

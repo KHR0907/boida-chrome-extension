@@ -13,7 +13,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["*://*.youtube.com/*"],
       "js": ["js/contentScript.js"],
       "css": ["css/style.css"]
     }
@@ -33,6 +33,5 @@
     "32": "/images/smile_32.png",
     "48": "/images/smile_48.png",
     "128": "/images/smile_128.png"
-  },
-  "options_page": "html/options.html"
+  }
 }

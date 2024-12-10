@@ -2,21 +2,21 @@
 <html lang=en>
 <meta charset=utf-8>
 <head>
-    <link rel="stylesheet" href="../css/button.css">
-    <title>Localhost PiP</title>
-    <style>
-        body {
-            width: 200px;
-            height: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/popup.css">
+    <title>Extension</title>
 </head>
 
-<body style="width : 200px; height : 0100px;">
-
-    <img src="../images/guy.jpg" style="height: 200px; width: 200px;" alt="a">
-    <button id="toggle-pip">Toggle PiP</button>
+<body style="background:#cef0d9;">
+<div class="main">
+    <div id="title">
+        <h1>Boida Translator</h1>
+    </div>
+    <div id="content">
+        <img id="toggle-pip" src="../images/onoff.png" style="width : 80px; height : 80px;"/>
+        <i class="arrow left" role="img" ></i>
+        <i class="arrow right" role="img" ></i>
+    </div>
+</div>
     <script src="../js/popup.js"></script>
-
 </body>
 </html>
