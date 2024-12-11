@@ -33,6 +33,67 @@ helpBox.addEventListener('click', function () {
 });
 
 
+
+// 버튼 클릭 이벤트 핸들러
+document.getElementById('subtitle-btn').addEventListener('click', async () => {
+    console.log("subString start");
+
+    let [activeTab] = await chrome.tabs.query({active: true, currentWindow: true}); // 활성화된 탭을 찾아냄
+
+    if (activeTab) {
+        chrome.scripting.executeScript({
+            target: {tabId: activeTab.id},
+            function: subStringOnOff, //  engineApiRequest 함수 실행
+        });
+    }
+});
+
+
+
+function subStringOnOff() {
+    // 상태를 관리하는 변수
+    let subtitleState = 0;
+    // URL
+    const targetUrl = "http://127.0.0.1/api/video-data/receiver";
+
+    // 상태를 전환
+    subtitleState = subtitleState === 0 ? 1 : 0;
+    console.log("subString start : "+subtitleState);
+
+    // 요청 본문 데이터
+    let requestData = {
+        subString: ""+subtitleState+""  // subString 값을 포함
+    };
+
+    fetch(targetUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'  // JSON 데이터임을 명시
+        },
+        body: JSON.stringify(
+            {
+                'subString' : ""+subtitleState+""
+            }
+        )  // 데이터를 JSON 형식으로 변환
+    })
+        .then(response => {
+            if (!response.ok) {  // 응답이 성공적인지 확인
+                throw new Error('Network response was not ok');
+            }
+            console.log("success");
+            return response.text();  // JSON 형식으로 변환
+        })
+        .then(data => {
+            console.log(data);  // 응답 데이터를 처리
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+
+}
+
+
 document.getElementById('convert-btn').addEventListener('click', async () => {
     let [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true }); // 활성화된 탭을 찾아냄
 
@@ -45,7 +106,6 @@ document.getElementById('convert-btn').addEventListener('click', async () => {
         });
     }
 });
-
 
 function engineApiRequest() {
     //URL
@@ -72,5 +132,3 @@ function engineApiRequest() {
         });
     console.log("end");
 }
-
-
