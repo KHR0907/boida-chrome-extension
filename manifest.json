@@ -22,16 +22,16 @@
     "default_title": "Translate MP4 to sign language",
     "default_popup": "html/popup.html",
     "default_icon": {
-      "16": "/images/smile_16.png",
-      "32": "/images/smile_32.png",
-      "48": "/images/smile_48.png",
-      "128": "/images/smile_128.png"
+      "16": "/images/hand_16.png",
+      "32": "/images/hand_32.png",
+      "48": "/images/hand_48.png",
+      "128": "/images/hand_128.png"
     }
   },
   "icons": {
-    "16": "/images/smile_16.png",
-    "32": "/images/smile_32.png",
-    "48": "/images/smile_48.png",
-    "128": "/images/smile_128.png"
+    "16": "/images/hand_16.png",
+    "32": "/images/hand_32.png",
+    "48": "/images/hand_48.png",
+    "128": "/images/hand_128.png"
   }
 }
