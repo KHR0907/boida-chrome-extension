@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html lang=en>
-<meta charset=utf-8>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/popup.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extension</title>
-</head>
+    <link rel="stylesheet" href="../css/popup.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-<body style="background:#cef0d9;">
-<div class="main">
-    <div id="title">
-        <h1>Boida Translator</h1>
+    </style>
+</head>
+<body>
+<div id="content">
+    <div id="help-box">
+        ❔
     </div>
-    <div id="content">
-        <img id="toggle-pip" src="../images/onoff.png" style="width : 80px; height : 80px;"/>
-        <i class="arrow left" role="img" ></i>
-        <i class="arrow right" role="img" ></i>
+    <button id="convert-btn" class="button">변환하기</button>
+    <button id="subtitle-btn" class="button">자막 on</button>
+    <div id="refresh"></div>
+    <div id="explain">
+        <p>
+        음성 데이터를 입력받아 각각의 단어를 추출한 뒤, 수어로 변환하여
+        아바타에 적용하여 시각화 해주는 청각 장애인들을 위한 확장 프로그램입니다.
+        </p>
     </div>
 </div>
-    <script src="../js/popup.js"></script>
+<script src="../js/popup.js"></script>
+
 </body>
 </html>

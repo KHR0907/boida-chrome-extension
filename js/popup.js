@@ -4,7 +4,36 @@
  * ---------------------------------------------------------------------------------
  **/
 
-document.getElementById('toggle-pip').addEventListener('click', async () => {
+document.getElementById('subtitle-btn').addEventListener('click', function () {
+    const subtitleBtn = this;
+    if (subtitleBtn.classList.contains('on')) {
+        subtitleBtn.textContent = '자막 on';
+        subtitleBtn.classList.remove('on');
+    } else {
+        subtitleBtn.textContent = '자막 off';
+        subtitleBtn.classList.add('on');
+    }
+});
+
+const helpBox = document.getElementById('help-box');
+const explain = document.getElementById('explain');
+let isToastVisible = false; // 플래그 변수
+helpBox.addEventListener('click', function () {
+
+    if (isToastVisible) return; // 이미 토스트가 표시 중이라면 실행하지 않음
+
+    isToastVisible = true; // 플래그 설정
+    explain.style.display = 'flex';
+    explain.classList.add('toast-animation');
+
+    setTimeout(() => {
+        explain.classList.remove('toast-animation');
+        isToastVisible = false;
+    }, 4000);
+});
+
+
+document.getElementById('convert-btn').addEventListener('click', async () => {
     let [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true }); // 활성화된 탭을 찾아냄
 
     if (activeTab) {
@@ -16,6 +45,7 @@ document.getElementById('toggle-pip').addEventListener('click', async () => {
         });
     }
 });
+
 
 function engineApiRequest() {
     //URL
